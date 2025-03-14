@@ -61,16 +61,26 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     "adms": ["userId1", "userId2"],
     "membros": ["userId3", "userId4", "userId5"],
     "rodadas": ["rodadaId1", "rodadaId2"],
-    "mensalidade": {
-      "vencimento": "2024-04-01",
-      "pagantes": ["userId3", "userId4"]
-    },
     "configuracoes": {
       "tempos_regulamentares": 2,
       "duracao_tempo": 15,
       "limite_gols_partida": 2,
       "prioridade_mensalistas": true
     }
+  }
+}
+```
+
+### **Coleção: pagamentos**
+```json
+{
+  "pagamentoId": {
+    "babaId": "babaId1",
+    "atletaId": "userId3",
+    "tipo": "mensalidade",
+    "valor": 50.00,
+    "status": "pago",
+    "data": "2024-03-10"
   }
 }
 ```
@@ -119,10 +129,6 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
           "bola_murcha": 0
         }
       }
-    },
-    "pagamentos": {
-      "babaId1": {"status": "pago", "data": "2024-03-10"},
-      "babaId2": {"status": "pendente", "data": "2024-03-15"}
     }
   }
 }
