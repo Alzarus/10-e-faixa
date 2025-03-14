@@ -44,6 +44,14 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
 
 ✅ **Notificações de aniversário** dos jogadores para incentivar interações no baba  
 
+## 🏗️ Tecnologias Utilizadas
+- Frontend: React Native + Expo
+- Banco de Dados: Firebase Firestore
+- Autenticação: Firebase Auth
+- Armazenamento de Imagens: Firebase Storage
+- Backend: Firebase Functions (se necessário para lógica adicional)
+- Hospedagem: Firebase Hosting (para uma possível versão web futuramente)
+
 ## 📂 Estrutura Detalhada do Banco de Dados (Firestore)
 
 ### **Coleção: babas**
