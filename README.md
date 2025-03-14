@@ -3,56 +3,7 @@
 ## 📌 Visão Geral
 O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de futebol) em Salvador e outras regiões. Ele permite a organização de partidas, controle de jogadores, sorteio de times equilibrados e registro de estatísticas em tempo real.  
 
-## 🚀 Funcionalidades Principais
-
-✅ **Cadastro de atletas** com nome, posição, nível, data de nascimento e foto  
-
-✅ **Criação e administração de babas**, permitindo busca e associação de jogadores  
-
-✅ **Registro do aniversário do baba**, com notificações para os jogadores  
-
-✅ **Controle de rodadas e partidas**, com cronômetro e placar em tempo real, além do registro de ocorrências da partida (gols, assistências, cartões, defesas difíceis, furadas/paçocadas e substituições)  
-
-✅ **Sorteio automático de times equilibrados**, considerando o nível dos jogadores:  
-   - O **time vencedor** permanece na quadra.  
-   - O **time perdedor sai** e um novo time entra no jogo.
-   - Em **caso de empate** o app faz um sorteio para ver quem fica e quem sai.  
-   - Se não houver jogadores suficientes para três times, o time perdedor será **sorteado** e um jogador **ficará de fora** temporariamente.  
-   - **Evita que convidados caiam no mesmo time**.  
-   - **Prioridade para jogadores mensalistas do baba**.  
-   - **Distribuição considerando classificação do atleta**, equilibrando os times.  
-
-✅ **Registro detalhado da partida**, incluindo gols, assistências, cartões e substituições  
-
-✅ **Registro de estatísticas individuais e coletivas**, com rankings semanais, mensais e anuais  
-
-✅ **Sistema de avaliação pós-jogo**, onde jogadores avaliam uns aos outros de 0 a 5 estrelas  
-
-✅ **Destaques da rodada** (calculados automaticamente após cada rodada):  
-   - 🏆 **Pereba**: Jogador com a **pior média de avaliações** da rodada.  
-   - ⚽ **Artilheiro**: Jogador com **mais gols marcados** na rodada.  
-   - 🥅 **Muralha**: Goleiro com **mais defesas difíceis** registradas na rodada.
-   - 🎩 **Maestro**: Jogador com **mais assistências** na rodada.  
-   - ⭐ **Craque**: Jogador com **melhor média de avaliações** na rodada.  
-   - 😵 **Bola Murcha**: Jogador com **mais registros de furadas/paçocadas** na rodada.  
-
-✅ **Histórico de conquistas dos jogadores**, contabilizando quantas vezes foram destaque em cada categoria  
-
-✅ **Diferenciação entre jogadores diaristas e mensalistas** dentro do baba  
-
-✅ **Gerenciamento financeiro**, permitindo o registro de mensalidades e pagamentos pelos administradores  
-
-✅ **Notificações de aniversário** dos jogadores para incentivar interações no baba  
-
-## 🏗️ Tecnologias Utilizadas
-
-- **Frontend:** React Native + Expo  
-- **Banco de Dados:** Firebase Firestore  
-- **Autenticação:** Firebase Auth  
-- **Armazenamento de Imagens:** Firebase Storage  
-- **Hospedagem:** Firebase Hosting (se necessário para backend futuramente)  
-
-## 📂 Estrutura do Banco de Dados (Firestore)
+## 📂 Estrutura Detalhada do Banco de Dados (Firestore)
 
 ### **Coleção: babas**
 ```json
@@ -68,7 +19,18 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     "adms": ["userId1", "userId2"],
     "membros": ["userId3", "userId4", "userId5"],
     "partidas": ["partidaId1", "partidaId2"],
-    "rodadas": 15
+    "rodadas": 15,
+    "mensalidade": {
+      "valor": 20.00,
+      "vencimento": "2024-04-01",
+      "pagantes": ["userId3", "userId4"]
+    },
+    "configuracoes": {
+      "tempos_regulamentares": 2,
+      "duracao_tempo": 15,
+      "limite_gols_partida": 2,
+      "prioridade_mensalistas": true
+    }
   }
 }
 ```
@@ -78,6 +40,7 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
 {
   "userId": {
     "nome": "Pedro Batista",
+    "apelido": "Pedrão",
     "posicao": "ATA/GOL/DEF",
     "nivel": 4.5,
     "destro_canhoto": "Destro",
@@ -86,24 +49,42 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     "babas_participando": ["babaId1", "babaId2"],
     "babas_adm": ["babaId1"],
     "estatisticas": {
-      "geral": { 
-        "gols": 10, 
-        "assistencias": 5, 
-        "presencas": 8, 
+      "geral": {
+        "gols": 10,
+        "assistencias": 5,
+        "presencas": 8,
         "avaliacoes": [5, 4, 5, 5, 4],
         "defesas_dificeis": 2,
         "furadas": 3,
-        "destaques": { "pereba": 1, "craque": 2, "maestro": 1 }
+        "cartoes": {"amarelo": 1, "vermelho": 0},
+        "destaques": {
+          "pereba": 1,
+          "craque": 2,
+          "maestro": 1,
+          "muralha": 0,
+          "bola_murcha": 1
+        }
       },
-      "babaId1": { 
-        "gols": 5, 
-        "assistencias": 3, 
-        "presencas": 4, 
+      "babaId1": {
+        "gols": 5,
+        "assistencias": 3,
+        "presencas": 4,
         "avaliacoes": [5, 4, 5],
         "defesas_dificeis": 1,
         "furadas": 1,
-        "destaques": { "pereba": 0, "craque": 1, "maestro": 1 }
+        "cartoes": {"amarelo": 0, "vermelho": 0},
+        "destaques": {
+          "pereba": 0,
+          "craque": 1,
+          "maestro": 1,
+          "muralha": 0,
+          "bola_murcha": 0
+        }
       }
+    },
+    "pagamentos": {
+      "babaId1": {"status": "pago", "data": "2024-03-10"},
+      "babaId2": {"status": "pendente", "data": "2024-03-15"}
     }
   }
 }
@@ -116,19 +97,43 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     "babaId": "babaId1",
     "data": "2024-03-20",
     "horario_inicio": "19:15",
+    "horario_fim": "19:45",
     "times": {
       "time1": ["userId3", "userId4"],
       "time2": ["userId5", "userId6"]
     },
-    "placar": { "time1": 2, "time2": 3 },
-    "gols": [{ "jogador": "userId3", "assistencia": "userId4" }],
-    "cartoes": [{ "jogador": "userId5", "tipo": "amarelo" }],
-    "substituicoes": [{ "saiu": "userId3", "entrou": "userId7" }],
-    "furadas": [{ "jogador": "userId6", "descricao": "Errou chute na cara do gol" }],
-    "defesas_dificeis": [{ "goleiro": "userId8", "descricao": "Defendeu chute forte no ângulo" }]
+    "placar": {"time1": 2, "time2": 3},
+    "gols": [
+      {"jogador": "userId3", "assistencia": "userId4", "time": "time1"},
+      {"jogador": "userId5", "assistencia": null, "time": "time2"}
+    ],
+    "cartoes": [
+      {"jogador": "userId5", "tipo": "amarelo", "motivo": "Falta dura"},
+      {"jogador": "userId6", "tipo": "vermelho", "motivo": "Reclamação excessiva"}
+    ],
+    "substituicoes": [
+      {"saiu": "userId3", "entrou": "userId7", "time": "time1"}
+    ],
+    "furadas": [
+      {"jogador": "userId6", "descricao": "Errou chute na cara do gol"}
+    ],
+    "defesas_dificeis": [
+      {"goleiro": "userId8", "descricao": "Defendeu chute forte no ângulo"}
+    ],
+    "estatisticas_rodada": {
+      "pereba": "userId6",
+      "craque": "userId5",
+      "maestro": "userId4",
+      "muralha": "userId8",
+      "bola_murcha": "userId6",
+      "artilheiro": "userId5"
+    }
   }
 }
 ```
+
+## 📢 Observações
+Este modelo detalhado inclui todas as informações e propriedades que podem ser armazenadas no banco de dados Firestore para garantir um funcionamento completo do aplicativo. Ele foi estruturado para manter escalabilidade e facilitar o acesso a estatísticas e regras de negócio dentro do *10 e Faixa*.
 
 ## 📅 Roadmap Inicial
 
@@ -157,15 +162,6 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
 - [ ] Criar sistema de estatísticas e rankings  
 - [ ] Criar sistema de avaliação de jogadores  
 
-## 📢 Contribuição  
-Se deseja contribuir, clone o repositório e siga as diretrizes de código!  
-
-```bash
-git clone https://github.com/seu-usuario/10-e-faixa.git
-cd 10-e-faixa
-npm install
-npm start
-```
-
 ## 📌 Status do Projeto  
 🚀 **Em desenvolvimento (Alpha)**  
+
