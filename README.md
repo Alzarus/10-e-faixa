@@ -5,7 +5,7 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
 
 ## 🚀 Funcionalidades Principais
 
-✅ **Cadastro de atletas** com nome, posição, nível, data de nascimento e foto  
+✅ **Cadastro de atletas** com nome, posição, data de nascimento e foto  
 
 ✅ **Criação e administração de babas**, permitindo busca e associação de jogadores  
 
@@ -13,14 +13,14 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
 
 ✅ **Controle de rodadas e partidas**, com cronômetro e placar em tempo real, além do registro de ocorrências da partida (gols, assistências, cartões, defesas difíceis, furadas/paçocadas e substituições)  
 
-✅ **Sorteio automático de times equilibrados**, considerando o nível dos jogadores:  
+✅ **Sorteio automático de times equilibrados**, considerando a média de avaliação (nível) dos jogadores:  
    - O **time vencedor** permanece na quadra.  
    - O **time perdedor sai** e um novo time entra no jogo.
    - Em **caso de empate** o app faz um sorteio para ver quem fica e quem sai.  
    - Se não houver jogadores suficientes para três times, o time perdedor será **sorteado** e um jogador **ficará de fora** temporariamente.  
    - **Evita que convidados caiam no mesmo time**.  
    - **Prioridade para jogadores mensalistas do baba**.  
-   - **Distribuição considerando classificação do atleta**, equilibrando os times.  
+   - **Distribuição considerando a média de avaliação do atleta**, equilibrando os times.  
 
 ✅ **Registro detalhado da partida**, incluindo gols, assistências, cartões e substituições  
 
