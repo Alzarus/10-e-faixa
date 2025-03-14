@@ -15,13 +15,12 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     "local": "Praia do Flamengo",
     "cidade": "Salvador",
     "aniversario": "2024-06-15",
-    "valor": 50.00,
+    "valor_diaria": 10.00,
+    "valor_mensalidade": 50.00,
     "adms": ["userId1", "userId2"],
     "membros": ["userId3", "userId4", "userId5"],
-    "partidas": ["partidaId1", "partidaId2"],
-    "rodadas": 15,
+    "rodadas": ["rodadaId1", "rodadaId2"],
     "mensalidade": {
-      "valor": 20.00,
       "vencimento": "2024-04-01",
       "pagantes": ["userId3", "userId4"]
     },
@@ -42,7 +41,7 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     "nome": "Pedro Batista",
     "apelido": "Pedrão",
     "posicao": "ATA/GOL/DEF",
-    "nivel": 4.5,
+    "media_avaliacoes": 4.5,
     "destro_canhoto": "Destro",
     "foto": "URL",
     "data_nascimento": "1995-08-10",
@@ -53,7 +52,6 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
         "gols": 10,
         "assistencias": 5,
         "presencas": 8,
-        "avaliacoes": [5, 4, 5, 5, 4],
         "defesas_dificeis": 2,
         "furadas": 3,
         "cartoes": {"amarelo": 1, "vermelho": 0},
@@ -69,7 +67,6 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
         "gols": 5,
         "assistencias": 3,
         "presencas": 4,
-        "avaliacoes": [5, 4, 5],
         "defesas_dificeis": 1,
         "furadas": 1,
         "cartoes": {"amarelo": 0, "vermelho": 0},
@@ -90,11 +87,32 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
 }
 ```
 
+### **Coleção: rodadas**
+```json
+{
+  "rodadaId": {
+    "babaId": "babaId1",
+    "data": "2024-03-20",
+    "partidas": ["partidaId1", "partidaId2"],
+    "avaliacoes": ["avaliacaoId1", "avaliacaoId2"],
+    "estatisticas_rodada": {
+      "pereba": "userId6",
+      "craque": "userId5",
+      "maestro": "userId4",
+      "muralha": "userId8",
+      "bola_murcha": "userId6",
+      "artilheiro": "userId5"
+    }
+  }
+}
+```
+
 ### **Coleção: partidas**
 ```json
 {
   "partidaId": {
     "babaId": "babaId1",
+    "rodadaId": "rodadaId1",
     "data": "2024-03-20",
     "horario_inicio": "19:15",
     "horario_fim": "19:45",
@@ -119,49 +137,20 @@ O **10 e Faixa** é um aplicativo para gerenciamento de "babas" (peladas de fute
     ],
     "defesas_dificeis": [
       {"goleiro": "userId8", "descricao": "Defendeu chute forte no ângulo"}
-    ],
-    "estatisticas_rodada": {
-      "pereba": "userId6",
-      "craque": "userId5",
-      "maestro": "userId4",
-      "muralha": "userId8",
-      "bola_murcha": "userId6",
-      "artilheiro": "userId5"
-    }
+    ]
   }
 }
 ```
 
-## 📢 Observações
-Este modelo detalhado inclui todas as informações e propriedades que podem ser armazenadas no banco de dados Firestore para garantir um funcionamento completo do aplicativo. Ele foi estruturado para manter escalabilidade e facilitar o acesso a estatísticas e regras de negócio dentro do *10 e Faixa*.
-
-## 📅 Roadmap Inicial
-
-### **Fase 1 - Setup Inicial** *(1 semana)*  
-- [x] Criar repositório no GitHub  
-- [x] Escolher tecnologia (React Native + Expo)  
-- [x] Configurar Firebase Firestore e Firebase Auth  
-- [ ] Criar estrutura inicial do app  
-
-### **Fase 2 - Cadastro de Atletas** *(2 semanas)*  
-- [ ] Criar tela de autenticação (Google Sign-In, email/senha)  
-- [ ] Criar tela de cadastro do atleta  
-- [ ] Implementar armazenamento de imagens no Firebase Storage  
-- [ ] Criar banco de dados de atletas no Firestore  
-
-### **Fase 3 - Cadastro e Gerenciamento de Babas** *(2 a 3 semanas)*  
-- [ ] Criar sistema de criação de babas  
-- [ ] Criar sistema de busca e associação a babas  
-- [ ] Criar sistema de administração de babas  
-
-### **Fase 4 - Gestão das Partidas** *(3 a 4 semanas)*  
-- [ ] Criar sorteio equilibrado de times  
-- [ ] Criar cronômetro e placar  
-- [ ] Criar sistema de registro de gols, assistências e cartões  
-- [ ] Criar sistema de substituição de jogadores  
-- [ ] Criar sistema de estatísticas e rankings  
-- [ ] Criar sistema de avaliação de jogadores  
-
-## 📌 Status do Projeto  
-🚀 **Em desenvolvimento (Alpha)**  
+### **Coleção: avaliacoes_rodada**
+```json
+{
+  "avaliacaoId": {
+    "rodadaId": "rodadaId1",
+    "avaliador": "userId3",
+    "avaliado": "userId6",
+    "nota": 3
+  }
+}
+```
 
